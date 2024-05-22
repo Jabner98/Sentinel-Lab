@@ -173,7 +173,55 @@ while ($true)
 <h2>Utilities Used</h2>
 
 - <b>ipgeolocation.io:</b> IP Address to Geolocation API
+<details>
+<summary><h2>Step 01: Create a Microsoft Azure Subscription</h2></summary>
+  
+1. Navigate to [Microsoft Azure](azure.microsoft.com) and create a free acount
+2. Your free account will give you $200 credit for the lab!
+</details>
 
+<details>
+<summary><h2>Step 02: Deploying a Honeypot</h2></summary>
+1. Create a Virtual Machine (VM)
+
+![Creating of VM](https://github.com/Jabner98/ActiveDirectoryLab/assets/112572239/f9ba427b-663c-488e-b47b-8ae54e9b8e11)
+
+2. Set a user name and password. Remember these as you will need them to log
+   into the Virtual Machine
+3. Leave Disk as all defaults
+4. In the networking section create a new inbound security rule to allow all
+   inbound traffic,
+
+![Creating our own Inbound Rule that lets anything in](https://github.com/Jabner98/ActiveDirectoryLab/assets/112572239/98b2eee5-bd06-4cc7-81f0-344b5ffcfe20)
+
+5. Create your VM
+</details>
+
+<details>
+<summary><h2>Step 03: Log Analystics Workspace</h2></summary>
+Creating LAW.
+
+![Next we create a Log Analytic Workspace](https://github.com/Jabner98/ActiveDirectoryLab/assets/112572239/9d9ffa00-2929-4f9a-a6cb-7a41423c1746)
+
+</details>
+
+<details>
+<summary><h2>Step 04: Microsoft Defender for Cloud</h2></summary>
+
+1. Search for "Microsoft Defender for Cloud"
+2. Select "Environment Settings" and under Name select the Log Analytics
+   Workspace that you named.
+   
+![clouddefender](https://github.com/Jabner98/ActiveDirectoryLab/assets/112572239/cd320253-7e1f-4ae6-8bd6-9e6e074aaac9)
+
+3. Set both Cloud Security Posture Management and Servers to ON. Leave SQL
+   servers on machines OFF
+   
+![turnonclouddefender](https://github.com/Jabner98/ActiveDirectoryLab/assets/112572239/75a060c9-326d-4731-95ee-ac403385c6b4)
+
+4. Don't forget to click "Save"
+
+</details>
 <h2>Several attacks from Ukraine and other countries coming in!; Custom logs being output with geodata</h2>
 
 <p align="center">
