@@ -3,7 +3,9 @@
 
 
 ## Introduction
-This lab will help you get ramped up with Microsoft Sentinel and provide hands-on practical experience for product features, capabilities, and scenarios. 
+This lab will help you get ramped up with Microsoft Sentinel and provide hands-on practical experience for product features, capabilities, and scenarios. In his lab I will be following a tutorial by <a href="https://www.youtube.com/@JoshMadakor">Josh Madakor</a>
+
+
 
 We will set up Azure Sentinel (SIEM) and connect it to a live virtual machine acting as a honey pot. We will observe live attacks (RDP Brute Force) from all around the world. We will use a custom PowerShell script to look up the attackers Geolocation information and plot it on the Azure Sentinel Map and the fact that Microsoft Sentinel offers a 30-day free trial.
 <h2>Description</h2>
@@ -236,6 +238,7 @@ Creating LAW.
 
 ![Add Microsoft Sentinel to workspace ](https://github.com/Jabner98/ActiveDirectoryLab/assets/112572239/c2cd459d-34dd-4170-906d-7baa9aeb4968)
 
+</details>
 <details>
 <summary><h2>Step 06: Disabling the Firewall in the Windows VM</h2></summary>
   
@@ -251,6 +254,17 @@ Creating LAW.
 <details>
 <summary><h2>Step 07: Scripting the Security Log Exporter</h2></summary>
 
+1. In the Windows VM download the [Powershell script](https://github.com/joshmadakor1/Sentinel-Lab/blob/main/Custom_Security_Log_Exporter.ps1)
+2. Open the script in Powershell ISE
+![Alt text](images/logexporterscript.png)
+3. Save the script. I saved it as "log-exporter"
+4. Navigate to https://ipgeolocation.io/ and sign up. You need to get the
+   provided api key and paste it into the script.
+![Alt text](images/geolocation.png)
+![Alt text](images/apikey.png)
+5. Run the script and navigate to ``C:\ProgramData\failed_rdp``
+6. Copy the contents of ``failed_rdp``
+   
 </details>
 
 
