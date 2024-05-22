@@ -221,7 +221,10 @@ Creating LAW.
    
 ![turnonclouddefender](https://github.com/Jabner98/ActiveDirectoryLab/assets/112572239/75a060c9-326d-4731-95ee-ac403385c6b4)
 
-4. Don't forget to click "Save"
+4. Make sure 'All Events' is selected for Data Collection. 
+![Turn on some Microsoft Defender settings for resource group](https://github.com/Jabner98/Sentinel-Lab/assets/112572239/de8a4499-76c7-46ee-9150-87bc2700b96a)
+
+5. Don't forget to click "Save"
 
 </details>
 
@@ -298,7 +301,39 @@ If you don't see results right away, it could take some time for Azure to sync t
 This command shows some failed RDP attempts in LAW. You can see where I purposedly did some test failed logins. 
 ![Failed_RDP logs in LAW ](https://github.com/Jabner98/Sentinel-Lab/assets/112572239/7b54b5f9-5296-48b0-ba38-d8bb9fe317c6)
 </details>
+<details>
+<summary><h2>Step 09: Mapping the Data in Microsoft Sentinel</h2></summary>
+1. Navigate to Microsoft Sentinel > Workbooks > Add workbook
+<br />
+2. Edit the workbook and remove the default widgets
+<br />
+3. Add a new query and paste the KQL query below:
 
+
+![data extraction and map in Sentinel](https://github.com/Jabner98/Sentinel-Lab/assets/112572239/af794089-f4d5-4ed8-bba6-eb3ed6907f8b)
+
+```
+FAILED_RDP_WITH_GEO_CL | extend username = extract(@"username:([^,]+)", 1, RawData),
+         timestamp = extract(@"timestamp:([^,]+)", 1, RawData),
+         latitude = extract(@"latitude:([^,]+)", 1, RawData),
+         longitude = extract(@"longitude:([^,]+)", 1, RawData),
+         sourcehost = extract(@"sourcehost:([^,]+)", 1, RawData),
+         state = extract(@"state:([^,]+)", 1, RawData),
+         label = extract(@"label:([^,]+)", 1, RawData),
+         destination = extract(@"destinationhost:([^,]+)", 1, RawData),
+         country = extract(@"country:([^,]+)", 1, RawData)
+| where destination != "samplehost"
+| where sourcehost != ""
+| summarize event_count=count() by latitude, longitude, sourcehost, label, destination, country 
+```
+4. Run the Query!
+
+   ![Running a script in LAW for the data extraction and map](https://github.com/Jabner98/Sentinel-Lab/assets/112572239/526db8be-b40a-4573-ade7-1c804c60513b)
+
+
+Visualizing as a Map:
+![Visualizing as a Map](https://github.com/Jabner98/Sentinel-Lab/assets/112572239/bc2eb10e-8ebb-42c1-a06c-a2483f0d1849)
+</details>
 
 <h2>Several attacks from Ukraine and other countries coming in!; Custom logs being output with geodata</h2>
 
