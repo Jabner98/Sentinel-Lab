@@ -243,8 +243,11 @@ Creating LAW.
 <summary><h2>Step 06: Disabling the Firewall in the Windows VM</h2></summary>
   
 1. Log into your Windows VM via RDP
-2. Once logged in type ``wf.msc`` in Start
-3. Click on Windows Defender Firewall Properties and turn the firewall off for
+
+  ![Connect to VM](https://github.com/Jabner98/Sentinel-Lab/assets/112572239/1715aabd-7125-463b-8cde-71e491d7dd9f)
+  
+3. Once logged in type ``wf.msc`` in Start
+4. Click on Windows Defender Firewall Properties and turn the firewall off for
    Domain, Private and Public Profiles.
 
 ![wfmsc](https://github.com/Jabner98/ActiveDirectoryLab/assets/112572239/dc146035-9f55-4cab-9e19-7c11344ef2ea)
@@ -256,15 +259,44 @@ Creating LAW.
 
 1. In the Windows VM download the [Powershell script](https://github.com/joshmadakor1/Sentinel-Lab/blob/main/Custom_Security_Log_Exporter.ps1)
 2. Open the script in Powershell ISE
-![Alt text](images/logexporterscript.png)
-3. Save the script. I saved it as "log-exporter"
-4. Navigate to https://ipgeolocation.io/ and sign up. You need to get the
-   provided api key and paste it into the script.
-![Alt text](images/geolocation.png)
-![Alt text](images/apikey.png)
-5. Run the script and navigate to ``C:\ProgramData\failed_rdp``
-6. Copy the contents of ``failed_rdp``
    
+<img width="611" alt="image" src="https://github.com/Jabner98/Sentinel-Lab/assets/112572239/4ff366ec-3f02-4ba4-86fa-c9982ef204fd">
+
+4. Save the script. I saved it as "log-exporter"
+5. Navigate to https://ipgeolocation.io/ and sign up. You need to get the
+   provided api key and paste it into the script.
+   
+![geolocation](https://github.com/Jabner98/Sentinel-Lab/assets/112572239/e4bda045-1754-4521-8fb5-b25875c696b9)
+![Creating API Key for Powershell script](https://github.com/Jabner98/Sentinel-Lab/assets/112572239/4c13ae8e-8253-4688-af2a-6de191fe7dfb)
+
+7. Run the script and navigate to ``C:\ProgramData\failed_rdp``
+8. Copy the contents of ``failed_rdp``
+
+ProgramData has been added a failed log file
+![ProgramData is been added a failed log file](https://github.com/Jabner98/Sentinel-Lab/assets/112572239/c14d9fb9-7065-4aba-8e33-0873da652fea)
+
+</details>
+<details>
+<summary><h2>Step 08: Using a custom log in LAW</h2></summary>
+  
+1. This will allow us to ingest the data that we are getting from the previous script. Navigate to the Log Analytics Workspace
+2. Create a custom log by clicking on Tables and New custom log (MMA-based)
+
+![customlogdcr](https://github.com/Jabner98/Sentinel-Lab/assets/112572239/2b0c98f9-500e-4b96-964c-b3976226fd40)
+
+4. Give a name to your custom log
+  ![Creating custom log in LAW](https://github.com/Jabner98/Sentinel-Lab/assets/112572239/9723e20d-da6a-4e4a-ba67-748df86e83d2)
+5. Click "Next" for Record delimiter
+6. Choose Windows for Collection paths and give it the path to the
+``failed_rdp.log`` in the Windows VM which would be
+``C:\ProgramData\failed_rdp.log``
+7. Name your custom log such as ``FAILED_RDP_WITH_GEO``
+8. Click Create
+![failedrdpwithgeo](https://github.com/Jabner98/Sentinel-Lab/assets/112572239/4793c485-716e-4cbe-b523-fb7db431cc30)
+
+If you don't see results right away, it could take some time for Azure to sync the VM and Log Analytics. Please be patient.
+This command shows some failed RDP attempts in LAW. You can see where I purposedly did some test failed logins. 
+![Failed_RDP logs in LAW ](https://github.com/Jabner98/Sentinel-Lab/assets/112572239/7b54b5f9-5296-48b0-ba38-d8bb9fe317c6)
 </details>
 
 
