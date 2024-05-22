@@ -222,6 +222,38 @@ Creating LAW.
 4. Don't forget to click "Save"
 
 </details>
+
+<details>
+<summary><h2>Step 05: Connect the LAW to the Virtual Machine/ Microsoft Sentinel</h2></summary>
+
+1. Navigate to Log Analystics Workspace and select your virtual machine to connect to the Log Analystics
+
+   ![Connect VM to log anal](https://github.com/Jabner98/ActiveDirectoryLab/assets/112572239/bc77c08a-fa59-4739-9b53-08cc4999a3f2)
+
+2. Navigate to Microsoft Sentinel and create Microsoft Sentinel.
+3. Select your Log Analytics Workspace name
+4. Click Add.
+
+![Add Microsoft Sentinel to workspace ](https://github.com/Jabner98/ActiveDirectoryLab/assets/112572239/c2cd459d-34dd-4170-906d-7baa9aeb4968)
+
+<details>
+<summary><h2>Step 06: Disabling the Firewall in the Windows VM</h2></summary>
+  
+1. Log into your Windows VM via RDP
+2. Once logged in type ``wf.msc`` in Start
+3. Click on Windows Defender Firewall Properties and turn the firewall off for
+   Domain, Private and Public Profiles.
+
+![wfmsc](https://github.com/Jabner98/ActiveDirectoryLab/assets/112572239/dc146035-9f55-4cab-9e19-7c11344ef2ea)
+
+</details>
+
+<details>
+<summary><h2>Step 07: Scripting the Security Log Exporter</h2></summary>
+
+</details>
+
+
 <h2>Several attacks from Ukraine and other countries coming in!; Custom logs being output with geodata</h2>
 
 <p align="center">
